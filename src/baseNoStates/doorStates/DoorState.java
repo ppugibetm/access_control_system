@@ -34,6 +34,9 @@ public abstract class DoorState {
     public void unlock() {
     }
 
+    public void unlock_shortly() {
+    }
+
     // Abstract method to get the name of the door state (overridden by subclasses)
     public abstract String getName();
 }

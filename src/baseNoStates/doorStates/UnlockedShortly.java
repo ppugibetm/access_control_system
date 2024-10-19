@@ -8,7 +8,7 @@ public class UnlockedShortly extends DoorState {
     }
 
     public String getName() {
-        return "unlocked";
+        return "unlocked_shortly";
     }
 
     public void lock() {
@@ -17,6 +17,7 @@ public class UnlockedShortly extends DoorState {
     }
 
     public void unlock() {
+
         System.out.println("Door is already unlocked!");
     }
 
