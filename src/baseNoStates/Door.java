@@ -101,4 +101,7 @@ public class Door {
   public void setClosed(boolean c) {
     closed = c;
   }
+
+
+
 }

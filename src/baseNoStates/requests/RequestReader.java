@@ -1,5 +1,9 @@
 package baseNoStates.requests;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import baseNoStates.DirectoryDoors;
 import baseNoStates.DirectoryUsers;
 import baseNoStates.Door;
@@ -52,15 +56,15 @@ public class RequestReader implements Request {
       userName = "unknown";
     }
     return "Request{"
-            + "credential=" + credential
-            + ", userName=" + userName
-            + ", action=" + action
-            + ", now=" + now
-            + ", doorID=" + doorId
-            + ", closed=" + doorClosed
-            + ", authorized=" + authorized
-            + ", reasons=" + reasons
-            + "}";
+        + "credential=" + credential
+        + ", userName=" + userName
+        + ", action=" + action
+        + ", now=" + now
+        + ", doorID=" + doorId
+        + ", closed=" + doorClosed
+        + ", authorized=" + authorized
+        + ", reasons=" + reasons
+        + "}";
   }
 
   public JSONObject answerToJson() {
@@ -91,14 +95,98 @@ public class RequestReader implements Request {
   // the result is put into the request object plus, if not authorized, why not,
   // only for testing
   private void authorize(User user, Door door) {
+
     if (user == null) {
       authorized = false;
       addReason("user doesn't exists");
     } else {
-      //TODO: get the who, where, when and what in order to decide, and if not
-      // authorized add the reason(s)
-      authorized = true;
+
+
+      LocalDate currentDate = now.toLocalDate();
+      LocalTime currentTime = now.toLocalTime();
+      DayOfWeek currentDay = now.getDayOfWeek();
+
+      // Check user's group
+      switch (user.getGroup()) {
+        case "blank":
+          authorized = false;
+          addReason("no privileges for blank users");
+          break;
+
+        case "employee":
+          // Employees: Sep. 1 this year to Mar. 1 next year, weekdays 9-17h, ground floor and first floor
+          if (!isDateWithinRange(currentDate, LocalDate.of(currentDate.getYear(), 9, 1), LocalDate.of(currentDate.getYear() + 1, 3, 1))) {
+            authorized = false;
+            addReason("outside allowed date range for employees");
+          } else if (!isWeekday(currentDay)) {
+            authorized = false;
+            addReason("outside allowed days for employees");
+          } else if (!isTimeWithinRange(currentTime, 9, 17)) {
+            authorized = false;
+            addReason("outside allowed hours for employees");
+          } else if (!isEmployeeDoor(door)) {
+            authorized = false;
+            addReason("employees are not allowed in this area");
+          } else {
+            authorized = true;
+          }
+          break;
+
+        case "manager":
+          // Managers: Sep. 1 this year to Mar. 1 next year, weekdays + Saturday, 8-20h, all spaces
+          if (!isDateWithinRange(currentDate, LocalDate.of(currentDate.getYear(), 9, 1), LocalDate.of(currentDate.getYear() + 1, 3, 1))) {
+            authorized = false;
+            addReason("outside allowed date range for managers");
+          } else if (!isWeekdayOrSaturday(currentDay)) {
+            authorized = false;
+            addReason("outside allowed days for managers");
+          } else if (!isTimeWithinRange(currentTime, 8, 20)) {
+            authorized = false;
+            addReason("outside allowed hours for managers");
+          } else {
+            authorized = true;
+          }
+          break;
+
+        case "admin":
+          // Admin: tots els privilegis i permissos on sigui i quan sigui
+          authorized = true;
+          break;
+
+        default:
+          authorized = false;
+          addReason("unknown group");
+          break;
+      }
     }
   }
+
+  // Mètode d'ajuda per comprovar si l'hora actual es troba dins de l'interval permès
+  private boolean isDateWithinRange(LocalDate date, LocalDate startDate, LocalDate endDate) {
+    return !date.isBefore(startDate) && !date.isAfter(endDate);
+  }
+
+  // Helper method to check if the current time is within the allowed range
+  private boolean isTimeWithinRange(LocalTime time, int startHour, int endHour) {
+    return !time.isBefore(LocalTime.of(startHour, 0)) && !time.isAfter(LocalTime.of(endHour, 0));
+  }
+
+  // Mètode d'ajuda per comprovar si el dia és laborable (de dilluns a divendres)
+  private boolean isWeekday(DayOfWeek day) {
+    return day != DayOfWeek.SATURDAY && day != DayOfWeek.SUNDAY;
+  }
+
+  // Mètode auxiliar per comprovar si el dia és laborable o dissabte
+  private boolean isWeekdayOrSaturday(DayOfWeek day) {
+    return day != DayOfWeek.SUNDAY;
+  }
+
+
+  // "Employees" tenen acces a totes les portes menys D1 i D2
+  private boolean isEmployeeDoor(Door door) {
+
+    return "D1" != door.getId() && "D2" != door.getId();
+  }
+
 }
 

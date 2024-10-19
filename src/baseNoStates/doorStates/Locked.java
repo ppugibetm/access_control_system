@@ -29,6 +29,8 @@ public class Locked extends DoorState {
     }
 
     public void unlock_shortly() {
+
+
         System.out.println("-------------Door unlocked temporary.");
         door.setState(new UnlockedShortly(door));// la porta pasa a l'estat "Unlocked_shortly"
         System.out.println(door.getStateName());
