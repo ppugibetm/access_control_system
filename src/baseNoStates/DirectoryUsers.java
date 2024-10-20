@@ -10,31 +10,31 @@ public final class DirectoryUsers {
     // blank users without any privilege, just to keep temporally users instead of deleting them,
     // this is to withdraw all permissions but still to keep user data to give back
     // permissions later
-    users.add(new User("Bernat", "12345","blank"));
-    users.add(new User("Blai", "77532","blank"));
+    users.add(new User("Bernat", "12345","blank", new ArrayList<>()));
+    users.add(new User("Blai", "77532","blank", new ArrayList<>()));
 
     // employees :
     // Sep. 1 this year to Mar. 1 next year
     // week days 9-17h
     // just shortly unlock
     // ground floor, floor1, exterior, stairs (this, for all), that is, everywhere but the parking
-    users.add(new User("Ernest", "74984","employee"));
-    users.add(new User("Eulalia", "43295","employee"));
+    users.add(new User("Ernest", "74984","employee", new ArrayList<>()));
+    users.add(new User("Eulalia", "43295","employee", new ArrayList<>()));
 
     // managers :
     // Sep. 1 this year to Mar. 1 next year
     // week days + saturday, 8-20h
     // all actions
     // all spaces
-    users.add(new User("Manel", "95783", "manager"));
-    users.add(new User("Marta", "05827","manager"));
+    users.add(new User("Manel", "95783", "manager", new ArrayList<>()));
+    users.add(new User("Marta", "05827","manager", new ArrayList<>()));
 
     // admin :
     // always=Jan. 1 this year to 2100
     // all days of the week
     // all actions
     // all spaces
-    users.add(new User("Ana", "11343","admin"));
+    users.add(new User("Ana", "11343","admin", new ArrayList<>()));
   }
 
   public static User findUserByCredential(String credential) {

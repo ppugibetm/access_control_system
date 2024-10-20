@@ -11,22 +11,26 @@ public class Propped extends DoorState {
         super(door_c);
     }
 
+    @Override
     public String getName() {
         return "propped";
     }
 
     // Lock the door.
+    @Override
     public void lock() {
         System.out.println("--------Cannot lock the door as it is open.");// S'ha de tancar la porta primer
 
     }
 
     // Unlock the door (already unlocked).
+    @Override
     public void unlock() {
         System.out.println("Door is already unlocked!");
     }
 
     // Close the door (if opened).
+    @Override
     public void close() {
         if (!door.isClosed()) {
             System.out.println("Door closed.");
@@ -39,10 +43,13 @@ public class Propped extends DoorState {
         }
     }
 
+    @Override
     public void unlock_shortly(){
         System.out.println("Door is already unlocked!");
     }
+
     // Open the door (if closed).
+    @Override
     public void open() {
         if (door.isClosed()) {
             System.out.println("Door open.");

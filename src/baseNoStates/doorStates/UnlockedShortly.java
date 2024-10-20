@@ -7,20 +7,24 @@ public class UnlockedShortly extends DoorState {
         super(door_c);
     }
 
+    @Override
     public String getName() {
         return "unlocked_shortly";
     }
 
+    @Override
     public void lock() {
         System.out.println("Door locked.");
         door.setState(new Locked(door));
     }
 
+    @Override
     public void unlock() {
 
         System.out.println("Door is already unlocked!");
     }
 
+    @Override
     public void close() {
         if (!door.isClosed()) {
             System.out.println("Door closed.");
@@ -31,6 +35,7 @@ public class UnlockedShortly extends DoorState {
         }
     }
 
+    @Override
     public void open() {
         if (door.isClosed()) {
             System.out.println("Door open.");

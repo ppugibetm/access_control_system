@@ -11,16 +11,19 @@ public class Locked extends DoorState {
         super(door_c);
     }
 
+    @Override
     public String getName() {
         return "locked";
     }
 
     // Lock the door (already locked).
+    @Override
     public void lock() {
         System.out.println("Door is already locked!");
     }
 
     // Unlock the door.
+    @Override
     public void unlock() {
         System.out.println("Door unlocked.");
         door.setState(new Unlocked(door));
@@ -28,6 +31,7 @@ public class Locked extends DoorState {
 
     }
 
+    @Override
     public void unlock_shortly() {
 
 
@@ -54,6 +58,7 @@ public class Locked extends DoorState {
     }
 
     // Open the door (cannot, it is locked - it can only remain open if it is already).
+    @Override
     public void open() {
         if (door.isClosed()) {
             System.out.println("Cannot open a locked door!");
@@ -64,6 +69,7 @@ public class Locked extends DoorState {
     }
 
     // Close the door (if open).
+    @Override
     public void close() {
         if (!door.isClosed()) {
             System.out.println("Door closed.");

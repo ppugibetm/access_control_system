@@ -80,7 +80,6 @@ public class Door {
     return state.getName();
   }
 
-  @Override
   public String toString() {
     return "Door{"
         + ", id='" + id + '\''
