@@ -58,17 +58,17 @@ public class DirectoryAreas {
         allAreas.add(floor1);
 
         Space room3 = new Space("room3", floor1);
-        groundFloor.addArea(room3);
+        floor1.addArea(room3);
         allAreas.add(room3);
         room3.addDoor(allDoors.get(7));
 
         Space corridor = new Space("corridor", floor1);
-        groundFloor.addArea(corridor);
+        floor1.addArea(corridor);
         allAreas.add(corridor);
         corridor.addDoor(allDoors.get(6));
 
         Space it = new Space("it", floor1);
-        groundFloor.addArea(it);
+        floor1.addArea(it);
         allAreas.add(it);
         it.addDoor(allDoors.get(8));
 
