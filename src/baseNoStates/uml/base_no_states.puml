@@ -176,9 +176,6 @@ class Space extends Area {
     + getAreas() : List<Area>
 }
 
-Area <|-- Partition
-Area <|-- Space
-
 Partition --> "*" Area : "areas"
 Space --> "*" Door : "doors"
 
