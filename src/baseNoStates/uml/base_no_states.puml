@@ -183,6 +183,14 @@ class Main {
 + {static} main(args : String)
 }
 
+class Clock {
++ Clock()
++ startTimer(delay : int)
+}
+
+UnlockedShortly --> Clock : "observes"
+Clock --|> UnlockedShortly : "notifies"
+
 note right of Main::main
 DiretoryUsers.makeUsers()
 DirectoryAreas.makeAreas(DirectoryDoors.makeDoors())

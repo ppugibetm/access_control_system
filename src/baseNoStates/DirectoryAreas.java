@@ -82,9 +82,9 @@ public class DirectoryAreas {
     }
 
     public static Area findAreaById(String id) {
-        if (id.equals(root.getName())) { return root; }
+        if (id.equals(root.getName())) { return root; } // If area is root, return root
 
-        for (Area area : allAreas) {
+        for (Area area : allAreas) { // Else, look for it in allAreas
             if (id.equals(area.getName())) { return area; }
         }
 

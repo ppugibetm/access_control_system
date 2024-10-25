@@ -20,7 +20,6 @@ public class Propped extends DoorState {
     @Override
     public void lock() {
         System.out.println("--------Cannot lock the door as it is open.");// S'ha de tancar la porta primer
-
     }
 
     // Unlock the door (already unlocked).
