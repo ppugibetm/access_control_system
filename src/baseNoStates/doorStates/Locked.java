@@ -1,5 +1,6 @@
 package baseNoStates.doorStates;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import baseNoStates.Clock;
 import baseNoStates.Door;
 
@@ -7,7 +8,7 @@ public class Locked extends DoorState {
     /*This class represents the state of the door when it is locked.
     It extends the DoorState abstract class and provides specific behaviors
     for a locked door.*/
-
+    private static final Logger logger = LoggerFactory.getLogger("baseNoStates.milestone1.Milestone1Class");
     public Locked(Door door_c) {
         super(door_c);
     }
@@ -20,34 +21,36 @@ public class Locked extends DoorState {
     // Lock the door (already locked).
     @Override
     public void lock() {
-        System.out.println("Door is already locked!");
+        logger.info("Door is already locked!");
     }
 
     // Unlock the door.
     @Override
     public void unlock() {
-        System.out.println("Door unlocked.");
+        logger.info("Door unlocked.");
         door.setState(new Unlocked(door));
-        System.out.println(door.getStateName());
+        logger.info(door.getStateName());
 
     }
 
     @Override
     public void unlock_shortly() {
-        System.out.println("-------------Door unlocked temporary.");
-        Clock clock = new Clock();
+        logger.debug("-------------Door unlocked temporary.");
+        Clock clock = Clock.getInstance();
+
+
         door.setState(new UnlockedShortly(door));// la porta pasa a l'estat "Unlocked_shortly"
-        System.out.println(door.getStateName());
+        logger.info(door.getStateName());
     }
 
     // Open the door (cannot, it is locked - it can only remain open if it is already).
     @Override
     public void open() {
         if (door.isClosed()) {
-            System.out.println("Cannot open a locked door!");
+            logger.info("Cannot open a locked door!");
         }
         else {
-            System.out.println("Door already open.");
+            logger.info("Door already open.");
         }
     }
 
@@ -55,11 +58,11 @@ public class Locked extends DoorState {
     @Override
     public void close() {
         if (!door.isClosed()) {
-            System.out.println("Door closed.");
+            logger.info("Door closed.");
             door.setClosed(true);
         }
         else {
-            System.out.println("Door is already closed!");
+            logger.info("Door is already closed!");
         }
     }
 }

@@ -3,6 +3,8 @@ package baseNoStates;
 import baseNoStates.areas.Area;
 import baseNoStates.areas.Partition;
 import baseNoStates.areas.Space;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +13,24 @@ import java.util.List;
 public class DirectoryAreas {
 
 
-    // Root area.
+    private static DirectoryAreas instance; // Singleton instance
     private static Area root;
 
     private static List<Door> allDoors = new ArrayList<>();
     private static List<Area> allAreas = new ArrayList<>();
 
+    private DirectoryAreas() {}
+
+    // Public method to provide access to the instance
+    public static DirectoryAreas getInstance() {
+        if (instance == null) {
+            instance = new DirectoryAreas();
+        }
+        return instance;
+    }
+
     public static void makeAreas(ArrayList<Door> doors) {
-        allDoors = doors;
+        allDoors = new ArrayList<>(doors);
 
         root = new Partition("building", null);
         allAreas.add(root);

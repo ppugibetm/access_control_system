@@ -21,9 +21,13 @@ import java.util.StringTokenizer;
 public class WebServer {
   private static final int PORT = 8080; // port to listen connection
   private static final DateTimeFormatter formatter =
-          DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+      DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
 
-  public WebServer() {
+  // Singleton instance
+  private static WebServer instance;
+
+  // Private constructor to prevent instantiation
+  private WebServer() {
     try {
       ServerSocket serverConnect = new ServerSocket(PORT);
       System.out.println("Server started.\nListening for connections on port : " + PORT + " ...\n");
@@ -38,6 +42,13 @@ public class WebServer {
     }
   }
 
+  // Static method to get the instance of WebServer
+  public static WebServer getInstance() {
+    if (instance == null) {
+      instance = new WebServer(); // Create the instance if not already created
+    }
+    return instance;
+  }
 
   private class SocketThread extends Thread {
     // as an inner class, SocketThread sees WebServer attributes
@@ -180,7 +191,6 @@ public class WebServer {
       answer += request.answerToJson().toString();
       return answer;
     }
-
   }
 
 }

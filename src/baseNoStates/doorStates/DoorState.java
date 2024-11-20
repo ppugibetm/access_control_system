@@ -1,5 +1,6 @@
 package baseNoStates.doorStates;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import baseNoStates.Door;
 
 // We used the State Design Pattern because it allows the door’s behavior to change dynamically
