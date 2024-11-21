@@ -1,6 +1,5 @@
 package baseNoStates;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 
 public final class DirectoryUsers {
@@ -21,16 +20,16 @@ public final class DirectoryUsers {
 
   public void makeUsers() {
     // User creation logic as before...
-    users.add(new User("Bernat", "12345","blank", new ArrayList<>()));
-    users.add(new User("Blai", "77532","blank", new ArrayList<>()));
+    users.add(new User("Bernat", "12345", "blank", new ArrayList<>()));
+    users.add(new User("Blai", "77532", "blank", new ArrayList<>()));
 
-    users.add(new User("Ernest", "74984","employee", new ArrayList<>()));
-    users.add(new User("Eulalia", "43295","employee", new ArrayList<>()));
+    users.add(new User("Ernest", "74984", "employee", new ArrayList<>()));
+    users.add(new User("Eulalia", "43295", "employee", new ArrayList<>()));
 
     users.add(new User("Manel", "95783", "manager", new ArrayList<>()));
-    users.add(new User("Marta", "05827","manager", new ArrayList<>()));
+    users.add(new User("Marta", "05827", "manager", new ArrayList<>()));
 
-    users.add(new User("Ana", "11343","admin", new ArrayList<>()));
+    users.add(new User("Ana", "11343", "admin", new ArrayList<>()));
   }
 
   public User findUserByCredential(String credential) {

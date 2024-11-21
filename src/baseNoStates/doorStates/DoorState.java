@@ -1,22 +1,20 @@
 package baseNoStates.doorStates;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import baseNoStates.Door;
 
 // We used the State Design Pattern because it allows the door’s behavior to change dynamically
 // based on its state (locked or unlocked). This pattern makes the system more flexible and easier
 // to extend with new states, without modifying the existing code.
 
+// This class defines the common behaviors (methods) that all door states must implement.
+// It ensures that all concrete states (like LockedState and UnlockedState) provide implementations
+// for opening, closing, locking, and unlocking the door.
 public abstract class DoorState {
-    /*This class defines the common behaviors (methods) that all door states must implement.
-    It ensures that all concrete states (like LockedState and UnlockedState) provide implementations
-    for opening, closing, locking, and unlocking the door.*/
-
-    protected Door door; // Protected variable to hold a reference of the Door object
+    protected final Door door; // Protected variable to hold a reference of the Door object
 
     // Constructor (initializes the DoorState with a Door object)
-    public DoorState(Door door_c) {
-        this.door = door_c;
+    public DoorState(Door doorC) {
+        door = doorC;
     }
 
     // Method to handle opening of the door (overridden by subclasses)
@@ -35,7 +33,7 @@ public abstract class DoorState {
     public void unlock() {
     }
 
-    public void unlock_shortly() {
+    public void unlockShortly() {
     }
 
     // Abstract method to get the name of the door state (overridden by subclasses)

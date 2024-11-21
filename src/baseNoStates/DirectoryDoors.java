@@ -1,11 +1,12 @@
 package baseNoStates;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class DirectoryDoors {
-  private static final Logger logger = LoggerFactory.getLogger("baseNoStates.milestone1.Milestone1Class"); // Declare the logger
+  private static final Logger logger = LoggerFactory.getLogger("baseNoStates.milestone1.Milestone1Class");
 
   private static DirectoryDoors instance; // Singleton instance
   private ArrayList<Door> allDoors;

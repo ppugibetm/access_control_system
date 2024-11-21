@@ -1,18 +1,15 @@
 package baseNoStates.areas;
 
 import baseNoStates.Door;
-import baseNoStates.doorStates.Locked;
-import baseNoStates.doorStates.Unlocked;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// This class represents a physical space (like a room or corridor).
+// It is a leaf component in the Composite pattern, as it cannot contain other areas.
+// Space is part of the Composite structure, representing an individual space. Unlike
+// partitions, it does not contain other areas, but it participates in the hierarchy
+// as a leaf node.
 public class Space extends Area {
-    /*This class represents a physical space (like a room or corridor).
-     It is a leaf component in the Composite pattern, as it cannot contain other areas.
-     Space is part of the Composite structure, representing an individual space. Unlike
-     partitions, it does not contain other areas, but it participates in the hierarchy
-     as a leaf node.*/
     private final List<Door> doors;
 
     public Space(String name, Area parent) {
@@ -47,6 +44,11 @@ public class Space extends Area {
     @Override
     public List<Area> getAreas() {
         throw new UnsupportedOperationException("A space cannot contain other areas.");
+    }
+
+    @Override
+    public void accept(AreaVisitor visitor) {
+        visitor.visitSpace(this);
     }
 }
 

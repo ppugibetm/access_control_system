@@ -1,9 +1,9 @@
 package baseNoStates;
 
-import baseNoStates.requests.RequestReader;
-import org.json.JSONObject;
 import baseNoStates.doorStates.DoorState;
 import baseNoStates.doorStates.Locked;
+import baseNoStates.requests.RequestReader;
+import org.json.JSONObject;
 
 
 public class Door {
@@ -37,20 +37,10 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-//        if (closed) {
-//          closed = false;
-//        } else {
-//          System.out.println("Can't open door " + id + " because it's already open");
-//        }
-        state.open();
+          state.open();
         break;
       case Actions.CLOSE:
-//        if (closed) {
-//          System.out.println("Can't close door " + id + " because it's already closed");
-//        } else {
-//          closed = true;
-//        }
-        state.close();
+          state.close();
         break;
       case Actions.LOCK:
         state.lock();
@@ -59,7 +49,7 @@ public class Door {
         state.unlock();
         break;
       case Actions.UNLOCK_SHORTLY:
-        state.unlock_shortly();
+        state.unlockShortly();
         break;
       default:
         assert false : "Unknown action " + action;

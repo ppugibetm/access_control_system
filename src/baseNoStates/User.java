@@ -3,7 +3,6 @@ package baseNoStates;
 import baseNoStates.areas.Area;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class User {
   private final String name;

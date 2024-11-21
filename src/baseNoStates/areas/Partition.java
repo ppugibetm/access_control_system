@@ -1,20 +1,15 @@
 package baseNoStates.areas;
 
-import baseNoStates.areas.Area;
 import baseNoStates.Door;
-import baseNoStates.doorStates.Locked;
-import baseNoStates.doorStates.Unlocked;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
+// This class represents a group of spaces or other partitions.
+// It is a composite component in the Composite pattern, as it can contain other areas.
+// Partition is the composite part of the Composite pattern, as it can contain other
+// spaces or partitions. This allows hierarchical grouping of spaces, making it easier
+// to manage access permissions on multiple levels (floor, department, building).
 public class Partition extends Area {
-    /*This class represents a group of spaces or other partitions.
-     It is a composite component in the Composite pattern, as it can contain other areas.
-     Partition is the composite part of the Composite pattern, as it can contain other
-     spaces or partitions. This allows hierarchical grouping of spaces, making it easier
-     to manage access permissions on multiple levels (floor, department, building).*/
     private final List<Area> areas;
 
     public Partition(String name, Area parent) {
@@ -56,6 +51,14 @@ public class Partition extends Area {
     @Override
     public List<Area> getAreas() {
         return areas;
+    }
+
+    @Override
+    public void accept(AreaVisitor visitor) {
+        visitor.visitPartition(this);
+        for (Area area : areas) {
+            area.accept(visitor); // Spread the visitor to the child areas
+        }
     }
 }
 

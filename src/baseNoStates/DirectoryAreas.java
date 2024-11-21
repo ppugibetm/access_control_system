@@ -3,9 +3,6 @@ package baseNoStates;
 import baseNoStates.areas.Area;
 import baseNoStates.areas.Partition;
 import baseNoStates.areas.Space;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class DirectoryAreas {
     private static Area root;
 
     private static List<Door> allDoors = new ArrayList<>();
-    private static List<Area> allAreas = new ArrayList<>();
+    private static final List<Area> allAreas = new ArrayList<>();
 
     private DirectoryAreas() {}
 

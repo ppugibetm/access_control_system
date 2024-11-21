@@ -1,15 +1,17 @@
 package baseNoStates.doorStates;
+
+import baseNoStates.Door;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import baseNoStates.Door;
 
+// This class represents the state of the door when it is unlocked.
+// It extends the DoorState abstract class and provides specific behaviors
+// for an unlocked door.
 public class Unlocked extends DoorState {
-    /*This class represents the state of the door when it is unlocked.
-    It extends the DoorState abstract class and provides specific behaviors
-    for an unlocked door.*/
     private static final Logger logger = LoggerFactory.getLogger("baseNoStates.milestone1.Milestone1Class");
-    public Unlocked(Door door_c) {
-        super(door_c);
+
+    public Unlocked(Door doorC) {
+        super(doorC);
     }
 
     @Override
@@ -36,8 +38,7 @@ public class Unlocked extends DoorState {
         if (!door.isClosed()) {
             logger.info("Door closed.");
             door.setClosed(true);
-        }
-        else {
+        } else {
             logger.warn("Door is already closed!");
         }
     }

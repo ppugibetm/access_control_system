@@ -1,16 +1,18 @@
 package baseNoStates.doorStates;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import baseNoStates.Clock;
 import baseNoStates.Door;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+// This class represents the state of the door when it is locked.
+// It extends the DoorState abstract class and provides specific behaviors
+// for a locked door.
 public class Locked extends DoorState {
-    /*This class represents the state of the door when it is locked.
-    It extends the DoorState abstract class and provides specific behaviors
-    for a locked door.*/
     private static final Logger logger = LoggerFactory.getLogger("baseNoStates.milestone1.Milestone1Class");
-    public Locked(Door door_c) {
-        super(door_c);
+
+    public Locked(Door doorC) {
+        super(doorC);
     }
 
     @Override
@@ -34,12 +36,12 @@ public class Locked extends DoorState {
     }
 
     @Override
-    public void unlock_shortly() {
-        logger.debug("-------------Door unlocked temporary.");
+    public void unlockShortly() {
+        logger.debug("Door unlocked temporary.");
         Clock clock = Clock.getInstance();
 
 
-        door.setState(new UnlockedShortly(door));// la porta pasa a l'estat "Unlocked_shortly"
+        door.setState(new UnlockedShortly(door)); // la porta pasa a l'estat "Unlocked_shortly"
         logger.info(door.getStateName());
     }
 
@@ -48,8 +50,7 @@ public class Locked extends DoorState {
     public void open() {
         if (door.isClosed()) {
             logger.info("Cannot open a locked door!");
-        }
-        else {
+        } else {
             logger.info("Door already open.");
         }
     }
@@ -60,8 +61,7 @@ public class Locked extends DoorState {
         if (!door.isClosed()) {
             logger.info("Door closed.");
             door.setClosed(true);
-        }
-        else {
+        } else {
             logger.info("Door is already closed!");
         }
     }

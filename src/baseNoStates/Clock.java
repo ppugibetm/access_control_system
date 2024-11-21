@@ -1,17 +1,16 @@
 package baseNoStates;
+
+import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.Observable;
-
+@SuppressWarnings("deprecation")
+// The Clock class will handle the ten seconds timer to
+// lock after the UnlockShortly state.
+// It is part of the Observer pattern.
 public class Clock extends Observable {
-    /*The Clock class will handle the ten seconds timer to
-    lock after the UnlockShortly state.
-    It is part of the Observer pattern.
-     */
-
     private static final Logger logger = LoggerFactory.getLogger("baseNoStates.milestone2.Milestone2Class");
 
     private final Timer timer;
